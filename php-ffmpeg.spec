@@ -2,7 +2,7 @@
 Summary:	Extension to manipulate movie in PHP
 Name:		php-%{_modname}
 Version:	0.5.1
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Development/Languages/PHP
 URL:		http://ffmpeg-php.sourceforge.net/
