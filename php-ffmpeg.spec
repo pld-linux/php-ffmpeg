@@ -2,12 +2,12 @@
 Summary:	Extension to manipulate movie in PHP
 Summary(pl.UTF-8):	Rozszerzenie do obróbki filmów w PHP
 Name:		php-%{_modname}
-Version:	0.5.1
-Release:	1
+Version:	0.5.3.1
+Release:	0.1
 License:	GPL
 Group:		Development/Languages/PHP
 Source0:	http://dl.sourceforge.net/ffmpeg-php/ffmpeg-php-%{version}.tbz2
-# Source0-md5:	705e306c0687cf3fb4743c2a7e847c2f
+# Source0-md5:	52395f26227ce72ee6d3a28a9e647fc8
 URL:		http://ffmpeg-php.sourceforge.net/
 BuildRequires:	ffmpeg-devel >= 0.4.9
 BuildRequires:	php-devel >= 3:5.0.0
