@@ -3,7 +3,7 @@ Summary:	Extension to manipulate movie in PHP
 Summary(pl.UTF-8):	Rozszerzenie do obróbki filmów w PHP
 Name:		php-%{_modname}
 Version:	0.6.0
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages/PHP
 Source0:	http://dl.sourceforge.net/ffmpeg-php/ffmpeg-php-%{version}.tbz2
@@ -13,7 +13,6 @@ BuildRequires:	ffmpeg-devel >= 0.4.9
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	php-gd
 BuildRequires:	rpmbuild(macros) >= 1.344
-BuildRequires:	sed >= 4.0
 Requires:	php-common >= 4:5.0.4
 Requires:	php-gd
 %{?requires_php_extension}
@@ -41,7 +40,6 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 
 %prep
 %setup -q -n ffmpeg-php-%{version}
-%{__sed} -i -e 's@/lib@/%{_lib}@' config.m4
 
 %build
 phpize
