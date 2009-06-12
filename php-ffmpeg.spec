@@ -3,7 +3,7 @@ Summary:	Extension to manipulate movie in PHP
 Summary(pl.UTF-8):	Rozszerzenie do obróbki filmów w PHP
 Name:		php-%{_modname}
 Version:	0.6.0
-Release:	3
+Release:	4
 License:	GPL
 Group:		Development/Languages/PHP
 Source0:	http://dl.sourceforge.net/ffmpeg-php/ffmpeg-php-%{version}.tbz2
@@ -61,6 +61,14 @@ EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+%php_webserver_restart
+
+%postun
+if [ "$1" = 0 ]; then
+	%php_webserver_restart
+fi
 
 %files
 %defattr(644,root,root,755)
