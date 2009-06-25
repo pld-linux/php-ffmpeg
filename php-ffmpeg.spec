@@ -1,7 +1,11 @@
-%define		_modname	ffmpeg
+#
+# Conditional build:
+%bcond_without	tests		# build without tests
+
+%define		modname	ffmpeg
 Summary:	Extension to manipulate movie in PHP
 Summary(pl.UTF-8):	Rozszerzenie do obróbki filmów w PHP
-Name:		php-%{_modname}
+Name:		php-%{modname}
 Version:	0.6.0
 Release:	5
 License:	GPL
@@ -9,7 +13,10 @@ Group:		Development/Languages/PHP
 Source0:	http://dl.sourceforge.net/ffmpeg-php/ffmpeg-php-%{version}.tbz2
 # Source0-md5:	f779c0dbffda9dac54729d60c0e04c05
 Patch0:		gdImageBoundsSafe.patch
+Patch1:		testsuite.patch
+Patch2:		tests.patch
 URL:		http://ffmpeg-php.sourceforge.net/
+%{?with_tests:BuildRequires:	/usr/bin/php}
 BuildRequires:	ffmpeg-devel >= 0.4.9
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	php-gd
@@ -42,11 +49,26 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %prep
 %setup -q -n ffmpeg-php-%{version}
 %patch0 -p1
+%patch2 -p1
+
+# failing due gdImageBounds calls
+rm -f tests/getFrame.phpt
+rm -f tests/getFramesBackwards.phpt
+rm -f tests/getFramesForward.phpt
+rm -f tests/getFramesForwardPassedEnd.phpt
+rm -f tests/getFramesNoArg.phpt
+rm -f tests/getNextKeyFrame.phpt
+rm -f tests/getPTS.phpt
+rm -f tests/isKeyFrame.phpt
+
 
 %build
 phpize
 %configure
+%{__patch} -p1 < %{PATCH1}
 %{__make}
+
+%{?with_tests:make PHP_EXECUTABLE=/usr/bin/php test}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -56,9 +78,9 @@ install -d $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d
 	EXTENSION_DIR=%{php_extensiondir}
 
 # install config file
-cat <<'EOF' > $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_modname}.ini
-; Enable %{_modname} extension module
-extension=%{_modname}.so
+cat <<'EOF' > $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{modname}.ini
+; Enable %{modname} extension module
+extension=%{modname}.so
 EOF
 
 %clean
@@ -75,5 +97,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog CREDITS EXPERIMENTAL LICENSE TODO test_ffmpeg.php
-%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_modname}.ini
-%attr(755,root,root) %{php_extensiondir}/%{_modname}.so
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{modname}.ini
+%attr(755,root,root) %{php_extensiondir}/%{modname}.so

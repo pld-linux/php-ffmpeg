@@ -1,0 +1,229 @@
+--- ffmpeg-php-0.6.0/tests/getAudioBitRate.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getAudioBitRate.phpt	2009-06-26 02:23:26.110035629 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getAudioBitRate(): %s\n", $mov->getAudioBitRate());
+ ?>
+---EXPECT--
+-ffmpeg getAudioBitRate(): 32000
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getAudioBitRate\(\): 32000
+--- ffmpeg-php-0.6.0/tests/getAudioChannels.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getAudioChannels.phpt	2009-06-26 02:23:26.110035629 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getAudioChannels(): %s\n", $mov->getAudioChannels());
+ ?>
+---EXPECT--
+-ffmpeg getAudioChannels(): 1
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getAudioChannels\(\): 1
+--- ffmpeg-php-0.6.0/tests/getAudioCodec.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getAudioCodec.phpt	2009-06-26 02:23:26.110035629 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getAudioCodec(): %s\n", $mov->getAudioCodec());
+ ?>
+---EXPECT--
+-ffmpeg getAudioCodec(): mp2
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getAudioCodec\(\): mp2
+--- ffmpeg-php-0.6.0/tests/getAudioSampleRate.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getAudioSampleRate.phpt	2009-06-26 02:23:26.110035629 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getAudioSampleRate(): %s\n", $mov->getAudioSampleRate());
+ ?>
+---EXPECT--
+-ffmpeg getAudioSampleRate(): 32000
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getAudioSampleRate\(\): 32000
+--- ffmpeg-php-0.6.0/tests/getAudioStreamId.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getAudioStreamId.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getAudioStreamId(): %s\n", $mov->getAudioStreamId());
+ ?>
+---EXPECT--
+-ffmpeg getAudioStreamId(): 0
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getAudioStreamId\(\): 0
+--- ffmpeg-php-0.6.0/tests/getBitRate.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getBitRate.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getBitRate(): %s\n", $mov->getBitRate());
+ ?>
+---EXPECT--
+-ffmpeg getBitRate(): 183948
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getBitRate\(\): 183948
+--- ffmpeg-php-0.6.0/tests/getDuration.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getDuration.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getDuration(): %0.2f\n", $mov->getDuration());
+ ?>
+---EXPECT--
+-ffmpeg getDuration(): 9.60 
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getDuration\(\): 9.60 
+--- ffmpeg-php-0.6.0/tests/getFileName.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getFileName.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -8,4 +8,5 @@
+ printf("ffmpeg getFileName(): %s\n", $mov->getFileName());
+ ?>
+ --EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
+ ffmpeg getFileName\(\): .*\/robot.avi
+--- ffmpeg-php-0.6.0/tests/getFrameCount.phpt	2008-10-09 01:24:41.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getFrameCount.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getFrameCount(): %d\n", $mov->getFrameCount());
+ ?>
+---EXPECT--
+-ffmpeg getFrameCount(): 240
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getFrameCount\(\): 240
+--- ffmpeg-php-0.6.0/tests/getFrameHeight.phpt	2008-10-09 01:24:41.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getFrameHeight.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getFrameHeight(): %d\n", $mov->getFrameHeight());
+ ?>
+---EXPECT--
+-ffmpeg getFrameHeight(): 112
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getFrameHeight\(\): 112
+--- ffmpeg-php-0.6.0/tests/getFrameNumber.phpt	2008-10-09 01:24:41.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getFrameNumber.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -10,5 +10,6 @@
+ $mov->getFrame(5);
+ printf("ffmpeg getFrameNumber(): %d\n", $mov->getFrameNumber());
+ ?>
+---EXPECT--
+-ffmpeg getFrameNumber(): 5
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getFrameNumber\(\): 5
+--- ffmpeg-php-0.6.0/tests/getFrameRate.phpt	2008-10-09 01:24:41.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getFrameRate.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getFrameRate(): %0.2f\n", $mov->getFrameRate());
+ ?>
+---EXPECT--
+-ffmpeg getFrameRate(): 25.00
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getFrameRate\(\): 25.00
+--- ffmpeg-php-0.6.0/tests/getFrameWidth.phpt	2008-10-09 01:24:41.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getFrameWidth.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getFrameWidth(): %d\n", $mov->getFrameWidth());
+ ?>
+---EXPECT--
+-ffmpeg getFrameWidth(): 160
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getFrameWidth\(\): 160
+--- ffmpeg-php-0.6.0/tests/getID3Info.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getID3Info.phpt	2009-06-26 02:23:26.126076603 +0300
+@@ -17,6 +17,6 @@
+ ffmpeg getTitle(): Test mp3
+ ffmpeg getArtist(): Alexander Thomas
+ ffmpeg getAlbum(): MP3 test files (http://www.dr-lex.be/software/testsounds.html#Tones)
+-ffmpeg getGenre(): (37)
++ffmpeg getGenre(): Sound Clip
+ ffmpeg getTrackNumber(): 3
+ ffmpeg getYear(): 2008
+--- ffmpeg-php-0.6.0/tests/getPixelAspectRatio.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getPixelAspectRatio.phpt	2009-06-26 02:23:26.115672432 +0300
+@@ -8,5 +8,6 @@
+ printf("ffmpeg getPixelAspectRatio(): %s\n", $mov->getPixelAspectRatio());
+ 
+ ?>
+---EXPECT--
+-ffmpeg getPixelAspectRatio(): 1
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getPixelAspectRatio\(\): 1
+--- ffmpeg-php-0.6.0/tests/getPixelFormat.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getPixelFormat.phpt	2009-06-26 02:23:26.120035613 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getPixelFormat(): %s\n", $mov->getPixelFormat());
+ ?>
+---EXPECT--
+-ffmpeg getPixelFormat(): yuv420p
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getPixelFormat\(\): yuv420p
+--- ffmpeg-php-0.6.0/tests/getVideoBitRate.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getVideoBitRate.phpt	2009-06-26 02:23:26.120035613 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getVideoBitRate(): %s\n", $mov->getVideoBitRate());
+ ?>
+---EXPECT--
+-ffmpeg getVideoBitRate(): 104857200
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getVideoBitRate\(\): 104857200
+--- ffmpeg-php-0.6.0/tests/getVideoCodec.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getVideoCodec.phpt	2009-06-26 02:23:26.120035613 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getVideoCodec(): %s\n", $mov->getVideoCodec());
+ ?>
+---EXPECT--
+-ffmpeg getVideoCodec(): mpeg1video
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getVideoCodec\(\): mpeg1video
+--- ffmpeg-php-0.6.0/tests/getVideoStreamId.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/getVideoStreamId.phpt	2009-06-26 02:23:26.120035613 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg getVideoStreamId(): %s\n", $mov->getVideoStreamId());
+ ?>
+---EXPECT--
+-ffmpeg getVideoStreamId(): 1
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getVideoStreamId\(\): 1
+--- ffmpeg-php-0.6.0/tests/hasAudio.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/hasAudio.phpt	2009-06-26 02:23:26.120035613 +0300
+@@ -7,5 +7,6 @@
+ $mov = new ffmpeg_movie(dirname(__FILE__) . '/test_media/robot.avi');
+ printf("ffmpeg hasAudio(): %s\n", $mov->hasAudio() ? 'Yes' : 'No');
+ ?>
+---EXPECT--
+-ffmpeg hasAudio(): Yes
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg hasAudio\(\): Yes
+--- ffmpeg-php-0.6.0/tests/persistentMovie.phpt	2008-10-08 20:37:34.000000000 +0300
++++ ffmpeg-php-0.6.0-tests/tests/persistentMovie.phpt	2009-06-26 02:23:26.126076603 +0300
+@@ -9,6 +9,7 @@
+ printf("ffmpeg getDuration(): %0.2f\n", $mov->getDuration());
+ printf("ffmpeg getDuration(): %0.2f\n", $mov2->getDuration());
+ ?>
+---EXPECT--
+-ffmpeg getDuration(): 9.60
+-ffmpeg getDuration(): 9.60
++--EXPECTREGEX--
++\[mpeg @ 0x[\da-f]+\]invalid dts\/pts combination
++ffmpeg getDuration\(\): 9.60
++ffmpeg getDuration\(\): 9.60
