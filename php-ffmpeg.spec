@@ -61,14 +61,14 @@ rm -f tests/getNextKeyFrame.phpt
 rm -f tests/getPTS.phpt
 rm -f tests/isKeyFrame.phpt
 
-
 %build
 phpize
 %configure
 %{__patch} -p1 < %{PATCH1}
 %{__make}
 
-%{?with_tests:make PHP_EXECUTABLE=/usr/bin/php test}
+%{?with_tests:%{__make} PHP_EXECUTABLE=/usr/bin/php test}
+%{?with_tests:test -f tests.log -a ! -s tests.log}
 
 %install
 rm -rf $RPM_BUILD_ROOT
