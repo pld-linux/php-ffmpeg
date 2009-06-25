@@ -1,12 +1,13 @@
 --- ffmpeg-php-0.6.0/ffmpeg_frame.c~	2009-06-25 23:06:11.000000000 +0300
 +++ ffmpeg-php-0.6.0/ffmpeg_frame.c	2009-06-25 23:06:13.837516462 +0300
-@@ -284,15 +284,14 @@
+@@ -284,15 +284,15 @@
      int x, y;
      int *src = (int*)frame->data[0];
  
-+	if (!gdImageBoundsSafeMacro(dest, width, height)) {
++	// disable gdImageBoundsSafeMacro it just returns gibberish
++	/*if (!gdImageBoundsSafeMacro(dest, width, height)) {
 +		return -1;
-+	}
++	}*/
 +
      for (y = 0; y < height; y++) {
          for (x = 0; x < width; x++) {
@@ -22,13 +23,3 @@
          }
          src += width;
      }
-@@ -342,8 +341,7 @@
- 
-     FFMPEG_PHP_FETCH_IMAGE_RESOURCE(gd_img, &return_value);
- 
--    if (_php_avframe_to_gd_image(ff_frame->av_frame, gd_img,
--            ff_frame->width, ff_frame->height)) {
-+    if (_php_avframe_to_gd_image(ff_frame->av_frame, gd_img, ff_frame->width, ff_frame->height)) {
-         zend_error(E_ERROR, "failed to convert frame to gd image");
-     }
- }
