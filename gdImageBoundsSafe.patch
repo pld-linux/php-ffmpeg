@@ -1,13 +1,12 @@
---- ffmpeg-php-0.6.0/ffmpeg_frame.c~	2009-06-25 23:06:11.000000000 +0300
-+++ ffmpeg-php-0.6.0/ffmpeg_frame.c	2009-06-25 23:06:13.837516462 +0300
-@@ -284,15 +284,15 @@
+--- ffmpeg-php-0.6.0/ffmpeg_frame.c	2009-06-25 23:06:13.837516462 +0300
++++ ffmpeg-php-0.6.2/ffmpeg_frame.c	2009-06-26 00:25:46.041340289 +0300
+@@ -284,15 +284,14 @@
      int x, y;
      int *src = (int*)frame->data[0];
  
-+	// disable gdImageBoundsSafeMacro it just returns gibberish
-+	/*if (!gdImageBoundsSafeMacro(dest, width, height)) {
-+		return -1;
-+	}*/
++    if (!gdImageBoundsSafeMacro(dest, width, height)) {
++        return -1;
++    }
 +
      for (y = 0; y < height; y++) {
          for (x = 0; x < width; x++) {
@@ -18,8 +17,27 @@
 -            } else {
 -                return -1;
 -            }
-+			/* copy pixel to gdimage buffer zeroing the alpha channel */
-+			dest->tpixels[y][x] = src[x] & 0x00ffffff;
++            /* copy pixel to gdimage buffer zeroing the alpha channel */
++            dest->tpixels[y][x] = src[x] & 0x00ffffff;
          }
          src += width;
+     }
+@@ -309,13 +308,13 @@
+     int x, y;
+     int *dest = (int*)frame->data[0];
+ 
++    if (!gdImageBoundsSafeMacro(src, width, height)) {
++       return -1;
++    }
++
+     for (y = 0; y < height; y++) {
+         for (x = 0; x < width; x++) {
+-            if (gdImageBoundsSafeMacro(src, x, y)) {
+-                dest[x] = src->tpixels[y][x];
+-            } else {
+-                return -1;
+-            }
++            dest[x] = src->tpixels[y][x];
+         }
+         dest += width;
      }
