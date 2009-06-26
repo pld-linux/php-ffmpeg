@@ -55,15 +55,9 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %patch3 -p1
 %endif
 
-# failing due gdImageBounds calls
-rm -f tests/getFrame.phpt
-rm -f tests/getFramesBackwards.phpt
-rm -f tests/getFramesForward.phpt
-rm -f tests/getFramesForwardPassedEnd.phpt
-rm -f tests/getFramesNoArg.phpt
-rm -f tests/getNextKeyFrame.phpt
-rm -f tests/getPTS.phpt
-rm -f tests/isKeyFrame.phpt
+# test run itself fails (no output log)
+# TEST_PHP_EXECUTABLE=/usr/bin/php php run-tests.php tests/getPTS.phpt --show-out
+mv tests/getPTS.phpt{,.broken}
 
 %build
 phpize
