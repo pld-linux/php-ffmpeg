@@ -1,3 +1,6 @@
+no idea why he enabled it, still broken here
+http://ffmpeg-php.svn.sourceforge.net/viewvc/ffmpeg-php/trunk/ffmpeg-php/ffmpeg_frame.c?view=log&sortby=date&pathrev=520
+
 --- ffmpeg-php-0.6.0/ffmpeg_frame.c	2009-06-25 23:06:13.837516462 +0300
 +++ ffmpeg-php-0.6.2/ffmpeg_frame.c	2009-06-26 00:25:46.041340289 +0300
 @@ -284,15 +284,14 @@
