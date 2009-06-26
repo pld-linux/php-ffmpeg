@@ -14,7 +14,8 @@ Source0:	http://dl.sourceforge.net/ffmpeg-php/ffmpeg-php-%{version}.tbz2
 # Source0-md5:	f779c0dbffda9dac54729d60c0e04c05
 Patch0:		gdImageBoundsSafe.patch
 Patch1:		testsuite.patch
-Patch2:		tests.patch
+Patch2:		tests-genre.patch
+Patch3:		tests-dtspts.patch
 URL:		http://ffmpeg-php.sourceforge.net/
 %{?with_tests:BuildRequires:	/usr/bin/php}
 BuildRequires:	ffmpeg-devel >= 0.4.9
@@ -49,7 +50,10 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %prep
 %setup -q -n ffmpeg-php-%{version}
 %patch0 -p1
+%if "%{pld_release}" != "ac"
 %patch2 -p1
+%patch3 -p1
+%endif
 
 # failing due gdImageBounds calls
 rm -f tests/getFrame.phpt
