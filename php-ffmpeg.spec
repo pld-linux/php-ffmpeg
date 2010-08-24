@@ -1,25 +1,35 @@
 #
 # Conditional build:
+%if "%{pld_release}" == "ac"
+%bcond_with		tests		# build without tests
+%else
 %bcond_without	tests		# build without tests
+%endif
 
 %define		modname	ffmpeg
 Summary:	Extension to manipulate movie in PHP
 Summary(pl.UTF-8):	Rozszerzenie do obróbki filmów w PHP
 Name:		php-%{modname}
 Version:	0.6.0
-Release:	7
+Release:	8
 License:	GPL
 Group:		Development/Languages/PHP
 Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-%{version}.tbz2
 # Source0-md5:	f779c0dbffda9dac54729d60c0e04c05
 Patch0:		gdImageBoundsSafe.patch
+Patch1:		avcodec_find_decoder-warn.patch
 Patch2:		tests-genre.patch
 Patch3:		tests-dtspts.patch
 URL:		http://ffmpeg-php.sourceforge.net/
-%{?with_tests:BuildRequires:	/usr/bin/php}
-BuildRequires:	ffmpeg-devel >= 0.4.9
+%if %{with tests}
+BuildRequires:	/usr/bin/php
 BuildRequires:	php-devel >= 4:5.3.2-5
+%else
+BuildRequires:	php-devel >= 3:5.0.0
+%endif
+BuildRequires:	ffmpeg-devel >= 0.4.9
 BuildRequires:	php-gd
+BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.344
 Requires:	php-common >= 4:5.0.4
 Requires:	php-gd
@@ -49,6 +59,7 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %prep
 %setup -q -n ffmpeg-php-%{version}
 %patch0 -p1
+%patch1 -p1
 %if "%{pld_release}" != "ac"
 %patch2 -p1
 %patch3 -p1
