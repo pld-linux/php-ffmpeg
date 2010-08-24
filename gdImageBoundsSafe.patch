@@ -3,15 +3,6 @@ http://ffmpeg-php.svn.sourceforge.net/viewvc/ffmpeg-php/trunk/ffmpeg-php/ffmpeg_
 
 --- ffmpeg-php-0.6.2/ffmpeg_frame.c	2009-06-26 00:25:46.041340289 +0300
 +++ ffmpeg-php-0.6.0/ffmpeg_frame.c	2009-06-26 02:28:30.532505030 +0300
-@@ -61,7 +61,7 @@
- }
- 
- // Borrowed from gd.c
--#define gdImageBoundsSafeMacro(im, x, y) (!((((y) < (im)->cy1) || ((y) > (im)->cy2)) || (((x) < (im)->cx1) || ((x) > (im)->cx2))))
-+#define gdImageBoundsSafeMacro(im, x, y) (1)
- 
- static int le_gd; // this is only valid after calling 
-                   // FFMPEG_PHP_FETCH_IMAGE_RESOURCE() 
 @@ -284,15 +284,14 @@
      int x, y;
      int *src = (int*)frame->data[0];
