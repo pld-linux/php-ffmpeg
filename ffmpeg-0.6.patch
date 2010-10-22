@@ -1,0 +1,39 @@
+--- ffmpeg-php-0.6.0/ffmpeg_frame.c~	2010-10-22 15:21:46.000000000 +0300
++++ ffmpeg-php-0.6.0/ffmpeg_frame.c	2010-10-22 15:22:44.447708469 +0300
+@@ -47,6 +47,13 @@
+ #include "ffmpeg_frame.h"
+ #include "ffmpeg_tools.h"
+ 
++/*
++ * fix for newer ffmpeg
++ */
++#ifndef PIX_FMT_RGBA32
++#define PIX_FMT_RGBA32 PIX_FMT_RGB32
++#endif
++
+ /* 
+    include gd header from local include dir. This is a copy of gd.h that is 
+    distributed with php-5.2.5. It is distributed along with ffmpeg-php to
+--- ffmpeg-php-0.6.0/ffmpeg_tools.c~	2010-10-22 15:36:52.000000000 +0300
++++ ffmpeg-php-0.6.0/ffmpeg_tools.c	2010-10-22 15:36:55.133422758 +0300
+@@ -74,7 +75,7 @@
+     }
+ 
+     result = sws_scale(sws_ctx, 
+-            src->data, src->linesize,
++            (const uint8_t * const*)src->data, src->linesize,
+             0, src_height,
+             dst->data, dst->linesize);
+ 
+--- ffmpeg-php-0.6.0/ffmpeg_movie.c~	2010-10-22 15:40:22.000000000 +0300
++++ ffmpeg-php-0.6.0/ffmpeg_movie.c	2010-10-22 15:40:23.647570108 +0300
+@@ -1212,8 +1212,7 @@
+     while (av_read_frame(ffmovie_ctx->fmt_ctx, &packet) >= 0) {
+         if (packet.stream_index == video_stream) {
+         
+-            avcodec_decode_video(decoder_ctx, frame, &got_frame,
+-                    packet.data, packet.size);
++            avcodec_decode_video2(decoder_ctx, frame, &got_frame, &packet);
+         
+             if (got_frame) {
+                 *is_keyframe = (packet.flags & PKT_FLAG_KEY);

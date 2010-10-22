@@ -20,7 +20,7 @@ Patch0:		gdImageBoundsSafe.patch
 Patch1:		avcodec_find_decoder-warn.patch
 Patch2:		tests-genre.patch
 Patch3:		tests-dtspts.patch
-Patch4:		ffmpeg.patch
+Patch4:		ffmpeg-0.6.patch
 URL:		http://ffmpeg-php.sourceforge.net/
 %if %{with tests}
 BuildRequires:	/usr/bin/php
@@ -64,8 +64,8 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %if "%{pld_release}" != "ac"
 %patch2 -p1
 %patch3 -p1
-%endif
 %patch4 -p1
+%endif
 
 # ./run-tests.sh --show-out tests/getPTS.phpt
 mv tests/getPTS.phpt{,.broken}
@@ -80,6 +80,7 @@ mv tests/getFramesForward.phpt{,.broken}
 
 %build
 phpize
+CPPFLAGS="%{rpmcppflags} -Werror"
 %configure
 %{__make}
 
