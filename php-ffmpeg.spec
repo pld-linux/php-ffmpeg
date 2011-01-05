@@ -18,7 +18,6 @@ Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-0.6.0.tbz2
 # Source0-md5:	f779c0dbffda9dac54729d60c0e04c05
 Patch100:	branch.diff
 Patch1:		avcodec_find_decoder-warn.patch
-Patch3:		tests-dtspts.patch
 Patch4:		ffmpeg-0.6.patch
 URL:		http://ffmpeg-php.sourceforge.net/
 %if %{with tests}
@@ -27,7 +26,7 @@ BuildRequires:	php-devel >= 4:5.3.2-5
 %else
 BuildRequires:	php-devel >= 3:5.0.0
 %endif
-BuildRequires:	ffmpeg-devel >= 0.4.9
+BuildRequires:	ffmpeg-devel >= 0.5
 BuildRequires:	php-gd
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.344
@@ -61,20 +60,21 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %patch100 -p0
 %patch1 -p1
 %if "%{pld_release}" != "ac"
-%patch3 -p1
 %patch4 -p1
 %endif
 
-# ./run-tests.sh --show-out tests/getPTS.phpt
-mv tests/getPTS.phpt{,.broken}
+# empty file
+rm tests/getFramesBackwards.phpt
+
 mv tests/getFrame.phpt{,.broken}
-mv tests/getFramesBackwards.phpt{,.broken}
 mv tests/getFramesForwardPassedEnd.phpt{,.broken}
 mv tests/getFramesNoArg.phpt{,.broken}
 mv tests/getNextKeyFrame.phpt{,.broken}
-mv tests/isKeyFrame.phpt{,broken}
 mv tests/persistentMovie.phpt{,.broken}
 mv tests/getFramesForward.phpt{,.broken}
+mv tests/getID3Info.phpt{,.broken}
+mv tests/getFrameResampled.phpt{,.broken}
+mv tests/getFramesInReverseOrder.phpt{,.broken}
 
 %build
 phpize
