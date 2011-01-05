@@ -1,30 +1,23 @@
---- ffmpeg-php-0.6.0/ffmpeg_frame.c~	2010-10-22 15:21:46.000000000 +0300
-+++ ffmpeg-php-0.6.0/ffmpeg_frame.c	2010-10-22 15:22:44.447708469 +0300
-@@ -47,6 +47,13 @@
- #include "ffmpeg_frame.h"
- #include "ffmpeg_tools.h"
- 
-+/*
-+ * fix for newer ffmpeg
-+ */
-+#ifndef PIX_FMT_RGBA32
-+#define PIX_FMT_RGBA32 PIX_FMT_RGB32
-+#endif
-+
- /* 
-    include gd header from local include dir. This is a copy of gd.h that is 
-    distributed with php-5.2.5. It is distributed along with ffmpeg-php to
---- ffmpeg-php-0.6.0/ffmpeg_tools.c~	2010-10-22 15:36:52.000000000 +0300
-+++ ffmpeg-php-0.6.0/ffmpeg_tools.c	2010-10-22 15:36:55.133422758 +0300
-@@ -74,7 +75,7 @@
+--- ffmpeg-php-0.6.0/ffmpeg_tools.c	2011-01-05 19:24:41.776783607 +0200
++++ ffmpeg-php-0.6.0/ffmpeg_tools.c	2011-01-05 19:26:11.295776392 +0200
+@@ -61,7 +61,7 @@
+         return 2;
      }
  
-     result = sws_scale(sws_ctx, 
--            src->data, src->linesize,
-+            (const uint8_t * const*)src->data, src->linesize,
-             0, src_height,
-             dst->data, dst->linesize);
+-    sws_scale(sws_ctx, src->data, src->linesize, 0, src_height, dst->data, dst->linesize);
++    sws_scale(sws_ctx, (const uint8_t * const*)src->data, src->linesize, 0, src_height, dst->data, dst->linesize);
+     sws_freeContext(sws_ctx);
  
+     return 0;
+@@ -83,7 +83,7 @@
+         shiftedInput.linesize[0] = pxIn->linesize[0];
+         shiftedInput.linesize[1] = pxIn->linesize[1];
+         shiftedInput.linesize[2] = pxIn->linesize[2];
+-        sws_scale(context->context, (uint8_t**)shiftedInput.data, 
++        sws_scale(context->context, (const uint8_t * const*)shiftedInput.data, 
+                 (int*)shiftedInput.linesize, 0, context->height - context->bandBottom - 
+                 context->bandTop, pxOut->data, pxOut->linesize);
+     }
 --- ffmpeg-php-0.6.0/ffmpeg_movie.c~	2010-10-22 15:40:22.000000000 +0300
 +++ ffmpeg-php-0.6.0/ffmpeg_movie.c	2010-10-22 15:40:23.647570108 +0300
 @@ -1212,8 +1212,7 @@
