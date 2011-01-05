@@ -22,6 +22,7 @@ Patch4:		ffmpeg-0.6.patch
 Patch6:		allow_persistent_on_persistentMovie.phpt.patch
 Patch7:		test_fixes.patch
 Patch8:		tests-frame_md5.patch
+Patch9:		tests-metadata-api.patch
 URL:		http://ffmpeg-php.sourceforge.net/
 %if %{with tests}
 BuildRequires:	/usr/bin/php
@@ -68,12 +69,10 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 # empty file
 rm tests/getFramesBackwards.phpt
-
-# failing tests
-mv tests/getID3Info.phpt{,.broken}
 
 %build
 phpize
