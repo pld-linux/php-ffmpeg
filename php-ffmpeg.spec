@@ -10,13 +10,13 @@
 Summary:	Extension to manipulate movie in PHP
 Summary(pl.UTF-8):	Rozszerzenie do obróbki filmów w PHP
 Name:		php-%{modname}
-Version:	0.6.0
-Release:	11
+Version:	0.6.3
+Release:	1
 License:	GPL
 Group:		Development/Languages/PHP
-Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-%{version}.tbz2
+Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-0.6.0.tbz2
 # Source0-md5:	f779c0dbffda9dac54729d60c0e04c05
-Patch0:		gdImageBoundsSafe.patch
+Patch100:	branch.diff
 Patch1:		avcodec_find_decoder-warn.patch
 Patch2:		tests-genre.patch
 Patch3:		tests-dtspts.patch
@@ -58,8 +58,8 @@ uzyskiwania informacji o czasie trwania i paśmie plików dźwiękowych
 obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 
 %prep
-%setup -q -n ffmpeg-php-%{version}
-%patch0 -p1
+%setup -q -n ffmpeg-php-0.6.0
+%patch100 -p0
 %patch1 -p1
 %if "%{pld_release}" != "ac"
 %patch2 -p1
