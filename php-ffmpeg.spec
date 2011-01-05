@@ -18,7 +18,6 @@ Source0:	http://downloads.sourceforge.net/ffmpeg-php/ffmpeg-php-0.6.0.tbz2
 # Source0-md5:	f779c0dbffda9dac54729d60c0e04c05
 Patch100:	branch.diff
 Patch1:		avcodec_find_decoder-warn.patch
-Patch2:		tests-genre.patch
 Patch3:		tests-dtspts.patch
 Patch4:		ffmpeg-0.6.patch
 URL:		http://ffmpeg-php.sourceforge.net/
@@ -62,7 +61,6 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %patch100 -p0
 %patch1 -p1
 %if "%{pld_release}" != "ac"
-%patch2 -p1
 %patch3 -p1
 %patch4 -p1
 %endif
