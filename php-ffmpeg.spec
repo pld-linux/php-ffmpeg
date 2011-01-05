@@ -21,6 +21,7 @@ Patch1:		avcodec_find_decoder-warn.patch
 Patch4:		ffmpeg-0.6.patch
 Patch6:		allow_persistent_on_persistentMovie.phpt.patch
 Patch7:		test_fixes.patch
+Patch8:		tests-frame_md5.patch
 URL:		http://ffmpeg-php.sourceforge.net/
 %if %{with tests}
 BuildRequires:	/usr/bin/php
@@ -66,19 +67,13 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %endif
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 # empty file
 rm tests/getFramesBackwards.phpt
 
 # failing tests
-mv tests/getFrame.phpt{,.broken}
-mv tests/getFramesForwardPassedEnd.phpt{,.broken}
-mv tests/getFramesNoArg.phpt{,.broken}
-mv tests/getNextKeyFrame.phpt{,.broken}
-mv tests/getFramesForward.phpt{,.broken}
 mv tests/getID3Info.phpt{,.broken}
-mv tests/getFrameResampled.phpt{,.broken}
-mv tests/getFramesInReverseOrder.phpt{,.broken}
 
 %build
 phpize
