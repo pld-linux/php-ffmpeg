@@ -61,7 +61,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
 +/* {{{ _php_get_metadata()
 + */
-+static const char* _php_get_metadata_tag(ff_movie_context *ffmovie_ctx, const char *key)
++static char* _php_get_metadata_tag(ff_movie_context *ffmovie_ctx, const char *key)
 +{
 +    // on first access do av_metadata_conv
 +    if (ffmovie_ctx->metadata == NULL) {
@@ -91,7 +91,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
 -    
 +
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "comment");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "comment");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
@@ -107,7 +107,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
      GET_MOVIE_RESOURCE(ffmovie_ctx);
  
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "title");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "title");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
@@ -123,7 +123,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
      GET_MOVIE_RESOURCE(ffmovie_ctx);
  
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "artist");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "artist");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
@@ -139,7 +139,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
      GET_MOVIE_RESOURCE(ffmovie_ctx);
  
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "copyright");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "copyright");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
@@ -155,7 +155,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
      GET_MOVIE_RESOURCE(ffmovie_ctx);
  
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "album");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "album");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
@@ -171,7 +171,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
      GET_MOVIE_RESOURCE(ffmovie_ctx);
  
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "genre");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "genre");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
@@ -187,7 +187,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
      GET_MOVIE_RESOURCE(ffmovie_ctx);
      
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "track");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "track");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
@@ -204,7 +204,7 @@ while((tag=av_metadata_get(m, "", tag, AV_METADATA_IGNORE_SUFFIX))) {
 +#if LIBAVFORMAT_VERSION_INT >= AV_VERSION_INT(52, 31, 0)
 +    // "id3v2 tag TYER is not considered in generic format
 +    // ideally "date" should be used here and extract year from it for full compatability
-+    const char *tag = _php_get_metadata_tag(ffmovie_ctx, "TYER");
++    char *tag = _php_get_metadata_tag(ffmovie_ctx, "TYER");
 +    if (tag && *tag) {
 +        RETURN_STRINGL(tag, strlen(tag), 1);
 +    }
