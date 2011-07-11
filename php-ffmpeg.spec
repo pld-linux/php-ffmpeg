@@ -1,7 +1,9 @@
 #
+# TODO: doesn't pass all tests
+#
 # Conditional build:
 %if "%{pld_release}" == "ac"
-%bcond_with		tests		# build without tests
+%bcond_with	tests		# build without tests
 %else
 %bcond_without	tests		# build without tests
 %endif
@@ -23,14 +25,16 @@ Patch6:		allow_persistent_on_persistentMovie.phpt.patch
 Patch7:		test_fixes.patch
 Patch8:		tests-frame_md5.patch
 Patch9:		tests-metadata-api.patch
+Patch10:	%{name}-ffmpeg08.patch
 URL:		http://ffmpeg-php.sourceforge.net/
 %if %{with tests}
 BuildRequires:	/usr/bin/php
 BuildRequires:	php-devel >= 4:5.3.2-5
+BuildRequires:	php-pcre
 %else
 BuildRequires:	php-devel >= 3:5.0.0
 %endif
-BuildRequires:	ffmpeg-devel >= 0.5
+BuildRequires:	ffmpeg-devel >= 0.7.1
 BuildRequires:	php-gd
 BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(macros) >= 1.344
@@ -70,13 +74,14 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 # empty file
 rm tests/getFramesBackwards.phpt
 
 %build
 phpize
-CPPFLAGS="%{rpmcppflags} -Werror"
+CPPFLAGS="%{rpmcppflags}"
 %configure
 %{__make}
 
