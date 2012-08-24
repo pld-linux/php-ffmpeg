@@ -2,11 +2,7 @@
 # TODO: doesn't pass all tests
 #
 # Conditional build:
-%if "%{pld_release}" == "ac"
 %bcond_with	tests		# build without tests
-%else
-%bcond_without	tests		# build without tests
-%endif
 
 %define		modname	ffmpeg
 Summary:	Extension to manipulate movie in PHP
