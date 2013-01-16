@@ -104,6 +104,10 @@ install -d $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d
 cat <<'EOF' > $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{modname}.ini
 ; Enable %{modname} extension module
 extension=%{modname}.so
+
+; --- options for %{modname}
+;ffmpeg.allow_persistent = 0
+;ffmpeg.show_warnings = 0
 EOF
 
 %clean
