@@ -1,5 +1,9 @@
-#
-# TODO: doesn't pass all tests
+# TODO
+# - doesn't pass all tests
+# - merge few bits from upstream svn:
+#   http://ffmpeg-php.svn.sourceforge.net/viewvc/ffmpeg-php?view=revision&sortby=date&revision=678
+# - seems abandoned, ffmpeg.org suggests to use ffmpeg/ffprobe tools
+#   http://ffmpeg.org/trac/ffmpeg/wiki/Using%20FFmpeg%20from%20PHP%20scripts#Conclusion
 #
 # Conditional build:
 %bcond_with	tests		# build without tests
