@@ -65,16 +65,16 @@ obsługiwanych przez ffmpeg (mov, avi, mpg, wmv...).
 
 %prep
 %setup -q -n ffmpeg-php-0.6.0
-%patch100 -p0
-%patch1 -p1
+%patch -P100 -p0
+%patch -P1 -p1
 %if "%{pld_release}" != "ac"
-%patch4 -p1
+%patch -P4 -p1
 %endif
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
+%patch -P6 -p1
+%patch -P7 -p1
+%patch -P8 -p1
+%patch -P9 -p1
+%patch -P10 -p1
 
 # empty file
 rm tests/getFramesBackwards.phpt
